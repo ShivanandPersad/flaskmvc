@@ -293,6 +293,8 @@
 
         function checkStatus(){
         if(!isPlaying && time === 0){
+            clearInterval(stat)
+            clearInterval(timeCheck)
             wordArray = wordListElement.querySelectorAll('span')
             inputValue = userInput.value.split('')
             wordArray.forEach((characterSpan, index) =>{
@@ -301,8 +303,14 @@
             if(character === characterSpan.innerText)
                 score++
             })
+            
             wordListElement.innerText = "Game over !!! \n "
             wordListElement.innerText += "Avg. WPM  " + (score/5)*4 + "\n"
+            
+            wordListElement.innerHTML += 
+                            ' <form action="/create/ ' + (score/5)*4 + '">' +
+                            '<input type="submit" value="Submit">'+
+                           '</form>'
             userInput.value = ''
             retry.style.visibility='visible'
             addScore.style.visibility='visible'
@@ -326,7 +334,7 @@
         isPlaying = true
         
         renderNextList(difficulty)
-        stat = setInterval(checkStatus, 50)
+        stat = setInterval(checkStatus, 500)
         if(!typing){
             typingCheck= setInterval(isTyping, 1000)
         }
