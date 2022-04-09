@@ -33,7 +33,8 @@ def static_user_page():
 @user_views.route('/game')
 @login_required
 def render_game():
-    return render_template('index.html')
+    scores = get_desc_order()
+    return render_template('index.html',scores=scores)
 
 @user_views.route('/signup', methods=['POST'])
 def signup_user():
@@ -54,8 +55,8 @@ def logsIn_user():
         flash('Wrong Username or Password!')
         return render_template('login.html')
     login_user(user)
-    #return redirect(url_for('user_views.render_game'))
-    return render_game()
+    #return redirec'(url_for('user_views.render_game'))
+    return redirect('https://8080-clicked1-flaskmvc-uuockkw9hw8.ws-us39.gitpod.io/game')
 
 @user_views.route('/logout', methods=['GET'])
 @login_required
@@ -63,3 +64,20 @@ def logout():
   logout_user()
   flash('Logged Out!')
   return render_template('login.html')
+
+@user_views.route('/create/<sc>')
+@login_required
+def createScore(sc):
+    score = create_score(current_user.username, sc)
+    return redirect('https://8080-clicked1-flaskmvc-uuockkw9hw8.ws-us39.gitpod.io/game')
+
+@user_views.route('/scores', methods=['GET'])
+def get_scores_page():
+    scores = get_desc_order()
+    return render_template('scores.html', scores=scores)
+
+@user_views.route('/delete/<id>')
+def delete_score(id):
+    result= delete(id)
+    if result == 'pass':
+        return redirect('https://8080-clicked1-flaskmvc-uuockkw9hw8.ws-us39.gitpod.io/scores')

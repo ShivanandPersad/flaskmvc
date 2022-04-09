@@ -5,6 +5,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>QWERTY</title>
     <!--<link href="style.css" rel="stylesheet" type="text/css" />-->
     <!--<script src="script.js" defer></script>-->
@@ -137,7 +138,10 @@
         
         #retry{
             margin-top: 1rem;
-            margin-left: 50%;
+            visibility: hidden;
+        }
+        #AddScore{
+            margin-top: 1rem;
             visibility: hidden;
         }
   
@@ -157,9 +161,37 @@
         <div class="timer" id="timer"></div>
         <div class="word-list" id="word-list"></div>
         <textarea id="user-input" class="user-input"></textarea>
-        <button class="button-81" type='button' id='retry' onClick="document.location.reload(true)">Retry</button>
+        <div class="buttons">
+            <button class="button-81" type='button' id='retry' onClick="document.location.reload(true)">Retry</button>
+            <button class="button-81" type='button' id='AddScore' onclick='submitScore()'>Add Score</button>
+            <a class="waves-effect waves-light btn" href="/create/${score}">Add Score</a>
+        </div>
+        
+       
+
+        <div class="row">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th><th>Username</th><th>Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for score in scores %}
+                  <tr>
+                      <td>{{loop.index}}</td>
+                      <td>{{score.username}}</td>
+                      <td>{{score.score}}</td>
+                  </tr>
+                {% endfor %}
+              <tbody>
+            </table>
+          </div>
       </div>
+      
     </div>
+
+   
     
   </body>
 
@@ -172,6 +204,7 @@
         const userInput = document.getElementById("user-input")
         const timerElement = document.getElementById("timer")
         const retry = document.getElementById('retry')
+        const addScore = document.getElementById('AddScore')
 
         const words = ["the","of","and","a","to","in","is","you","that","it","he","was","for","on","are","as","with","his","they","I","at","be","this","have","from","or","one","had","by","word","but","not","what","all","were","we","when","your","can","said","there","use","an","each","which","she","do","how","their","if","will","up","other","about","out","many","then","them","these","so","some","her","would","make","like","him","into","time","has","look","two","more","write","go","see","number","no","way","could","people","my","than","first","water","been","call","who","oil","its","now","find","long","down","day","did","get","come","made","may","part"];
         let result = "";
@@ -183,6 +216,7 @@
         let difficulty = 'medium'
         let list = []
         let typing = false;
+
 
         function easy() {
         time = 15
@@ -268,9 +302,11 @@
                 score++
             })
             wordListElement.innerText = "Game over !!! \n "
-            wordListElement.innerText += "Avg. WPM  " + (score/5)*4
+            wordListElement.innerText += "Avg. WPM  " + (score/5)*4 + "\n"
             userInput.value = ''
             retry.style.visibility='visible'
+            addScore.style.visibility='visible'
+
         }
         }
 
@@ -324,6 +360,7 @@
         }
         }
 
+     
 
 
     </script>

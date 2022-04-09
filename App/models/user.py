@@ -7,6 +7,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     username =  db.Column(db.String(80),unique=True,nullable=False)
     password = db.Column(db.String(120), nullable=False)
+    score = db.relationship('Scores', backref='user', lazy=True,cascade="all, delete-orphan" )
 
 
 
