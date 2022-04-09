@@ -149,7 +149,18 @@
   </head>
   
   <body>
-    <div id="title1" class="title1">QWERT</div>
+    <nav class="blue">
+        <div class="nav-wrapper">
+            <a href="/game" class="brand-logo">QWERTY</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li> <a href="/logout">Logout</a> </li>
+            </ul>
+      </nav>
+    <div>
+        <div id="title1" class="title1">QWERT</div>
+        <a class="waves-effect waves-light btn" href="/logout">Logout</a>
+    </div>
+
     
     <div id="game" class="game">
       <div class="container">
@@ -163,8 +174,7 @@
         <textarea id="user-input" class="user-input"></textarea>
         <div class="buttons">
             <button class="button-81" type='button' id='retry' onClick="document.location.reload(true)">Retry</button>
-            <button class="button-81" type='button' id='AddScore' onclick='submitScore()'>Add Score</button>
-            <a class="waves-effect waves-light btn" href="/create/${score}">Add Score</a>
+            
         </div>
         
        
@@ -187,9 +197,11 @@
               <tbody>
             </table>
           </div>
+        
       </div>
       
     </div>
+    
 
    
     
@@ -309,11 +321,11 @@
             
             wordListElement.innerHTML += 
                             ' <form action="/create/ ' + (score/5)*4 + '">' +
-                            '<input type="submit" value="Submit">'+
+                            '<input type="submit" value="Add Score">'+
                            '</form>'
             userInput.value = ''
             retry.style.visibility='visible'
-            addScore.style.visibility='visible'
+   
 
         }
         }
