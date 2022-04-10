@@ -21,15 +21,6 @@ def get_user_page():
     users = get_all_users()
     return render_template('users.html', users=users)
 
-@user_views.route('/api/users')
-def client_app():
-    users = get_all_users_json()
-    return jsonify(users)
-
-@user_views.route('/static/users')
-def static_user_page():
-  return send_from_directory('static', 'static-user.html')
-
 @user_views.route('/game')
 @login_required
 def render_game():
