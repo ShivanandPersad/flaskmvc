@@ -47,7 +47,7 @@ def logsIn_user():
         return render_template('login.html')
     login_user(user)
     #return redirec'(url_for('user_views.render_game'))
-    return redirect('https://8080-clicked1-flaskmvc-uuockkw9hw8.ws-us39.gitpod.io/game')
+    return redirect('https://thebestthereis2.herokuapp.com/game')
 
 @user_views.route('/logout', methods=['GET'])
 @login_required
@@ -60,7 +60,7 @@ def logout():
 @login_required
 def createScore(sc):
     score = create_score(current_user.username, sc)
-    return redirect('https://8080-clicked1-flaskmvc-uuockkw9hw8.ws-us39.gitpod.io/game')
+    return redirect('https://thebestthereis2.herokuapp.com/game')
 
 @user_views.route('/scores', methods=['GET'])
 def get_scores_page():
@@ -71,4 +71,4 @@ def get_scores_page():
 def delete_score(id):
     result= delete(id)
     if result == 'pass':
-        return redirect('https://8080-clicked1-flaskmvc-uuockkw9hw8.ws-us39.gitpod.io/scores')
+        return redirect('https://thebestthereis2.herokuapp.com/scores')
