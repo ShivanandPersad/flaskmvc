@@ -225,7 +225,7 @@
         let time = 15
         timeCheck = setInterval(countdown, 1000)
         typingCheck = setInterval(isTyping,1000)
-        let difficulty = 'medium'
+        let difficulte
         let list = []
         let typing = false;
 
@@ -257,13 +257,13 @@
         clearInterval(typingCheck)
         score = 0
         typing = false
-        init('asain')
+        init('asian')
         
         }
 
 
         async function getRandomWords(difficulty){
-        if(difficulty === 'asain'){
+        if(difficulty === 'asian'){
             let response = await fetch(asianList)
             return response.json()
         }
@@ -317,7 +317,7 @@
             })
             
             wordListElement.innerText = "Game over !!! \n "
-            wordListElement.innerText += "Avg. WPM  " + (score/5)*4 + "\n"
+            wordListElement.innerText += "Avg. WPM  " + (score/5)*4  + " "+ difficulte+ "\n"
             
             wordListElement.innerHTML += 
                             ' <form action="/create/ ' + (score/5)*4 + '">' +
@@ -343,6 +343,7 @@
 
 
         function init(difficulty){
+        difficulte =difficulty
         isPlaying = true
         
         renderNextList(difficulty)
