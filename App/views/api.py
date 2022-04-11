@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, render_template, request, send_from_direc
 
 api_views = Blueprint('api_views', __name__, template_folder='../templates')
 
-@api_views.route('/')
+@api_views.route('/', methods=['GET'])
 def get_login_page():
     return render_template('login.html')
 
