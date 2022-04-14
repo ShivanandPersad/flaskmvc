@@ -316,7 +316,7 @@
             })
             
             wordListElement.innerText = "Game over !!! \n "
-            wordListElement.innerText += "Avg. WPM  " + (score/5)*4  + " "+ difficulte+ "\n"
+            wordListElement.innerText += "Avg. WPM  " + ((score/5)*4)|0  + " "+ difficulte+ "\n"
             
             wordListElement.innerHTML += 
                             ' <form action="/create/' + ((score/5)*4)|0 + '">' +
